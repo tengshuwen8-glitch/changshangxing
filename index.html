@@ -550,115 +550,6 @@
         transition-duration: 0.01ms !important;
       }
     }
-    /* ===== P2P 聊天增强 ===== */
-    .chat-mode-bar {
-      display: flex; background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 10px;
-    }
-    .chat-mode-bar .mode-btn {
-      flex: 1; padding: 8px 0; text-align: center; font-size: 13px; font-weight: 500;
-      cursor: pointer; background: transparent; color: var(--text-secondary);
-      border: none; transition: all 0.2s; -webkit-appearance: none;
-    }
-    .chat-mode-bar .mode-btn.active {
-      background: var(--accent); color: #fff;
-    }
-
-    .p2p-panel { display: none; margin-bottom: 10px; }
-    .p2p-panel.active { display: block; }
-
-    .p2p-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 14px; margin-bottom: 10px;
-      box-shadow: var(--shadow-sm);
-    }
-    .p2p-card .card-label {
-      font-size: 11px; color: var(--text-secondary); letter-spacing: 1px;
-      margin-bottom: 6px; text-transform: uppercase;
-    }
-    .p2p-card .peer-id-display {
-      font-size: 15px; font-weight: 700; color: var(--text);
-      font-family: "SF Mono", "Menlo", "Consolas", monospace;
-      word-break: break-all; background: var(--input-bg);
-      padding: 8px 12px; border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 8px;
-    }
-    .p2p-card .btn-copy {
-      flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
-      background: var(--accent); color: #fff; border: none;
-      font-size: 12px; cursor: pointer; -webkit-appearance: none;
-    }
-    .p2p-card .btn-copy:active { opacity: 0.8; }
-
-    .p2p-connect-row {
-      display: flex; gap: 8px; margin-top: 10px;
-    }
-    .p2p-connect-row input {
-      flex: 1; height: 40px; padding: 0 12px;
-      background: var(--input-bg); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); font-size: 14px; font-family: inherit;
-      color: var(--text); outline: none; -webkit-appearance: none;
-    }
-    .p2p-connect-row input:focus { border-color: var(--accent); }
-    .p2p-connect-row .btn-connect {
-      height: 40px; padding: 0 16px; border-radius: var(--radius-sm);
-      background: var(--accent); color: #fff; border: none;
-      font-size: 14px; font-weight: 600; cursor: pointer;
-      white-space: nowrap; -webkit-appearance: none;
-    }
-    .p2p-connect-row .btn-connect:active { opacity: 0.85; }
-
-    .p2p-status {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 12px; border-radius: var(--radius-sm);
-      font-size: 12px; font-weight: 500; margin-bottom: 10px;
-    }
-    .p2p-status.connected { background: var(--green-muted); color: var(--green); }
-    .p2p-status.disconnected { background: var(--orange-muted); color: var(--orange); }
-    .p2p-status.connecting { background: var(--blue-muted); color: var(--blue); }
-    .p2p-status .status-dot {
-      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-    }
-    .p2p-status.connected .status-dot { background: var(--green); }
-    .p2p-status.disconnected .status-dot { background: var(--orange); }
-    .p2p-status.connecting .status-dot { background: var(--blue); animation: pulse 1.5s ease-in-out infinite; }
-
-    .chat-bubble.peer {
-      margin-right: auto; background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text); border-bottom-left-radius: 4px;
-    }
-    .chat-bubble.peer .bubble-sender {
-      font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 2px;
-    }
-
-    .chat-bubble img { max-width: 200px; border-radius: 8px; display: block; margin-top: 4px; cursor: pointer; }
-    .chat-bubble .img-placeholder {
-      display: flex; align-items: center; gap: 8px; padding: 8px 12px;
-      background: var(--input-bg); border-radius: 8px; margin-top: 4px;
-      font-size: 13px; color: var(--text-secondary);
-    }
-
-    .chat-attach-row {
-      display: flex; gap: 6px; padding: 0 0 8px;
-    }
-    .chat-attach-row .btn-attach {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--input-bg); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text-secondary);
-      transition: all 0.15s; -webkit-appearance: none;
-    }
-    .chat-attach-row .btn-attach:active { background: var(--card-hover); color: var(--accent); }
-
-    #p2p-file-input { display: none; }
-
-    .p2p-tip {
-      text-align: center; padding: 20px; color: var(--text-secondary);
-      font-size: 13px; line-height: 1.6;
-    }
-    .p2p-tip svg { display: block; width: 48px; height: 48px; margin: 0 auto 12px; opacity: 0.3; }
   </style>
 </head>
 <body>
@@ -830,51 +721,87 @@
       <div class="market-list" id="market-list"></div>
     </div>
 
-    <!-- ===== 聊天（客服 + P2P） ===== -->
+    <!-- ===== 用户 ===== -->
+    <div class="view" id="view-user">
+      <div class="user-card">
+        <div class="user-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div class="user-id" id="user-id-display">---</div>
+        <div class="user-label">ID</div>
+      </div>
+      <div class="user-stats">
+        <div class="stat-row"><span class="skey">注册时间</span><span class="sval" id="user-reg-time">---</span></div>
+        <div class="stat-row"><span class="skey">累计挂单</span><span class="sval" id="user-listing-count">0</span></div>
+      </div>
+      <div class="progress-section" id="payment-progress">
+        <div class="ps-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          打款进度
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="payment-bar" style="transform:scaleX(0)"></div></div>
+        <div class="countdown-text" id="countdown-timer">--:--:--</div>
+        <div class="countdown-sub" id="countdown-sub"></div>
+        <div class="countdown-done" id="countdown-done" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"/></svg>已到账
+        </div>
+      </div>
+      <div class="progress-section" id="rental-progress">
+        <div class="ps-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          出租进度
+        </div>
+        <div id="rental-list"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 底部导航 -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-tab="form">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      <span>挂单</span>
+    </div>
+    <div class="nav-item" data-tab="history">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+      <span>历史</span>
+    </div>
+    <div class="nav-item" data-tab="market">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span>市场</span>
+    </div>
+    <div class="nav-item" data-tab="chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span>客服</span>
+    </div>
+    <div class="nav-item" data-tab="user">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span>我的</span>
+    </div>
+  </nav>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- 详情弹窗 -->
+  <div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+</div>
+
+    <!-- ===== 客服聊天 ===== -->
     <div class="view" id="view-chat">
-      <!-- 模式切换 -->
-      <div class="chat-mode-bar">
-        <button class="mode-btn active" data-chat-mode="cs">💬 智能客服</button>
-        <button class="mode-btn" data-chat-mode="p2p">🔗 P2P 聊天</button>
-      </div>
-
-      <!-- P2P 连接面板 -->
-      <div class="p2p-panel" id="p2p-panel">
-        <div class="p2p-card">
-          <div class="card-label">我的连接 ID（固定不变）</div>
-          <div class="peer-id-display">
-            <span id="my-peer-id">---</span>
-            <button class="btn-copy" id="btn-copy-id">复制</button>
-          </div>
-        </div>
-        <div class="p2p-card">
-          <div class="card-label">连接对方</div>
-          <div class="p2p-connect-row">
-            <input type="text" id="remote-peer-id" placeholder="输入对方的连接 ID" autocomplete="off">
-            <button class="btn-connect" id="btn-p2p-connect">连接</button>
-          </div>
-        </div>
-        <div class="p2p-status disconnected" id="p2p-status">
-          <span class="status-dot"></span>
-          <span id="p2p-status-text">等待连接...</span>
-          <button style="margin-left:auto;background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;display:none;" id="btn-p2p-disconnect">断开</button>
-        </div>
-      </div>
-
-      <!-- 聊天区域 -->
       <div class="chat-wrap">
         <div class="chat-messages" id="chat-messages">
-          <div class="p2p-tip" id="p2p-tip" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            <p>将你的连接 ID 发给对方<br>或输入对方的 ID 建立连接</p>
-            <p style="font-size:11px;margin-top:8px;opacity:0.6;">数据通过 WebRTC 端到端加密直连<br>不经过任何服务器</p>
+          <div class="chat-bubble cs">
+            您好，欢迎联系刀锋商行客服。有什么可以帮您的？
           </div>
-        </div>
-        <div class="chat-attach-row" id="chat-attach-row" style="display:none;">
-          <button class="btn-attach" id="btn-attach-img" title="发送图片">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </button>
-          <input type="file" id="p2p-file-input" accept="image/*">
         </div>
         <div class="chat-input-wrap">
           <input type="text" id="chat-input" placeholder="输入消息..." autocomplete="off">
@@ -883,6 +810,728 @@
           </button>
         </div>
       </div>
+    </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#fafbfc">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="刀锋商行">
+  <link rel="manifest" href="./manifest.json">
+  <title>刀锋商行</title>
+  <style>
+    /* ===== 基础 ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* 白色简约调色板 */
+      --bg:            oklch(0.985 0.002 260);
+      --card:          oklch(1 0 0 0);
+      --card-elevated: oklch(0.975 0.003 260);
+      --border:        oklch(0.88 0.008 260);
+      --border-light:  oklch(0.93 0.005 260);
+      --text:          oklch(0.15 0.008 265);
+      --text-secondary:oklch(0.48 0.015 265);
+      --ink-dim:       oklch(0.62 0.01 265);
+      --accent:        oklch(0.4 0.18 15);
+      --accent-hover:  oklch(0.35 0.18 15);
+      --accent-muted:  oklch(0.4 0.18 15 / 0.08);
+      --green:         oklch(0.55 0.18 150);
+      --green-muted:   oklch(0.55 0.18 150 / 0.1);
+      --orange:        oklch(0.6 0.16 75);
+      --orange-muted:  oklch(0.6 0.16 75 / 0.1);
+      --blue:          oklch(0.5 0.18 255);
+      --blue-muted:    oklch(0.5 0.18 255 / 0.08);
+      --input-bg:      oklch(0.97 0.003 260);
+      --overlay:       oklch(0 0 0 / 0.35);
+
+      /* 阴影 (白色主题) */
+      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
+      --shadow-md: 0 2px 8px oklch(0 0 0 / 0.07);
+      --shadow-lg: 0 4px 20px oklch(0 0 0 / 0.1);
+
+      /* 间距 */
+      --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+      --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px;
+
+      /* 字号 */
+      --text-xs: 0.75rem;   --text-sm: 0.8125rem; --text-base: 0.9375rem;
+      --text-md: 1rem;      --text-lg: 1.125rem;  --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+      --green-bg: var(--green-muted);
+      --orange-bg: var(--orange-muted);
+      --blue-bg: var(--blue-muted);
+      --accent-glow: var(--accent-muted);
+      --card-hover: var(--card-elevated);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior: contain;
+      -webkit-user-select: none; user-select: none;
+    }
+
+    .app {
+      max-width: 430px; margin: 0 auto;
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+
+    /* ===== 顶部栏 ===== */
+    .header {
+      padding: 14px 20px 10px; text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 10;
+    }
+    .header-logo { height: 44px; width: auto; display: block; margin: 0 auto; }
+    .header .subtitle { font-size: 12px; color: var(--text-secondary); margin-top: 4px; letter-spacing: 1px; }
+
+    /* ===== 主内容区 ===== */
+    .main {
+      flex: 1; overflow-y: auto;
+      padding: 14px 16px 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ===== 视图切换 ===== */
+    .view { display: none; }
+    .view.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ===== 步骤指示器 ===== */
+    .steps {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin-bottom: 16px;
+    }
+    .steps .step {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+    .steps .step .num {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700;
+      background: var(--card); border: 1.5px solid var(--border);
+      color: var(--text-secondary); transition: all 0.3s;
+    }
+    .steps .step.active { color: var(--text); }
+    .steps .step.active .num { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .steps .step.done { color: var(--green); }
+    .steps .step.done .num { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+    .steps .line {
+      width: 40px; height: 1.5px; background: var(--border);
+      margin: 0 8px; transition: background 0.3s;
+    }
+    .steps .line.done { background: var(--green); }
+
+    /* ===== 表单分组 ===== */
+    .section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .section-title {
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      letter-spacing: 1px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .section-title::before {
+      content: ''; display: inline-block;
+      width: 4px; height: 14px; background: var(--accent); border-radius: 2px;
+    }
+
+    /* ===== 表单字段 ===== */
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block; font-size: 14px; font-weight: 500;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .field label .hint { font-size: 11px; color: var(--text-secondary); font-weight: 400; }
+    .field input[type="text"],
+    .field input[type="number"] {
+      width: 100%; height: 44px; padding: 0 14px;
+      background: var(--input-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-size: 15px; font-family: inherit; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
+    }
+    .field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .field input::placeholder { color: var(--ink-dim); }
+    .field input[type="number"]::-webkit-inner-spin-button,
+    .field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+    .field select {
+      width: 100%; height: 44px; padding: 0 12px;
+      background: var(--input-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-size: 15px; font-family: inherit; outline: none;
+      -webkit-appearance: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4 l4 4 l4-4' fill='none' stroke='%238b949e' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; cursor: pointer;
+    }
+
+    /* Radio */
+    .radio-group { display: flex; gap: 10px; }
+    .radio-group .radio-btn {
+      flex: 1; height: 44px; display: flex; align-items: center; justify-content: center;
+      background: var(--input-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 14px;
+      color: var(--text-secondary); cursor: pointer; transition: all 0.2s; gap: 6px;
+    }
+    .radio-group .radio-btn input { display: none; }
+    .radio-group .radio-btn.selected { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .radio-group .radio-btn .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1.5px solid var(--text-secondary); transition: all 0.2s;
+    }
+    .radio-group .radio-btn.selected .dot { border-color: var(--accent); background: var(--accent); }
+
+    /* ===== 按钮 ===== */
+    .submit-wrap { padding: 0; margin-top: 4px; }
+    .btn-submit {
+      width: 100%; height: 50px;
+      background: var(--accent);
+      border: none; border-radius: var(--radius); color: #fff;
+      font-size: 17px; font-weight: 600; letter-spacing: 1px;
+      cursor: pointer; transition: all 0.15s var(--ease-out);
+      -webkit-appearance: none; box-shadow: var(--shadow-md);
+    }
+    .btn-submit:active { transform: scale(0.98); opacity: 0.9; box-shadow: var(--shadow-sm); }
+    .btn-back {
+      display: block; text-align: center; padding: 12px;
+      color: var(--text-secondary); font-size: 13px;
+      cursor: pointer; margin-bottom: 8px;
+    }
+    .btn-back:active { color: var(--text); }
+
+    /* ===== 状态卡片 ===== */
+    .status-card {
+      text-align: center; padding: 24px 20px;
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); margin-bottom: 14px;
+    }
+    .status-card .status-icon {
+      width: 64px; height: 64px; margin: 0 auto 16px;
+      background: var(--orange-bg); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+    .status-card .status-icon svg { width: 32px; height: 32px; color: var(--orange); }
+    .status-card .status-label { font-size: 20px; font-weight: 700; color: var(--orange); letter-spacing: 1px; margin-bottom: 4px; }
+    .status-card .status-time { font-size: 12px; color: var(--text-secondary); }
+
+    .status-detail {
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); padding: 16px; margin-bottom: 14px;
+    }
+    .status-detail .detail-row {
+      display: flex; justify-content: space-between; padding: 7px 0;
+      font-size: 13px; border-bottom: 1px solid var(--border-light);
+    }
+    .status-detail .detail-row:last-child { border-bottom: none; }
+    .status-detail .detail-row .key { color: var(--text-secondary); }
+    .status-detail .detail-row .val { color: var(--text); font-weight: 500; text-align: right; max-width: 60%; }
+
+    .btn-new-listing {
+      width: 100%; height: 46px; background: transparent;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text); font-size: 15px; cursor: pointer;
+      transition: background 0.2s; -webkit-appearance: none;
+    }
+    .btn-new-listing:active { background: var(--card-hover); }
+
+    /* ===== 历史列表 ===== */
+    .empty-state {
+      text-align: center; padding: 60px 20px; color: var(--text-secondary);
+    }
+    .empty-state svg { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.3; }
+    .empty-state p { font-size: 14px; }
+
+    .history-item {
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); padding: 14px 16px;
+      margin-bottom: 10px; cursor: pointer; transition: all 0.15s var(--ease-out);
+    }
+    .history-item:active { background: var(--card-hover); }
+    .history-item .hi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .history-item .hi-server { font-size: 15px; font-weight: 600; color: var(--text); }
+    .history-item .hi-status { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+    .hi-status.listing { background: var(--orange-bg); color: var(--orange); }
+    .history-item .hi-meta { font-size: 12px; color: var(--text-secondary); display: flex; gap: 12px; }
+    .history-item .hi-price { color: var(--accent); font-weight: 600; }
+
+    /* ===== 底部导航 ===== */
+    .bottom-nav {
+      display: flex; border-top: 1px solid var(--border);
+      background: var(--bg); padding-bottom: var(--safe-bottom);
+    }
+    .bottom-nav .nav-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 54px; cursor: pointer; color: var(--text-secondary);
+      transition: color 0.2s; gap: 2px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bottom-nav .nav-item.active { color: var(--accent); }
+    .bottom-nav .nav-item svg { width: 21px; height: 21px; }
+    .bottom-nav .nav-item span { font-size: 10px; font-weight: 500; }
+
+    /* ===== Toast ===== */
+    .toast {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%) translateY(-120px);
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: 12px 24px; border-radius: var(--radius-lg);
+      font-size: 14px; font-weight: 500; z-index: 999;
+      transition: transform 0.3s var(--ease-out);
+      pointer-events: none; box-shadow: var(--shadow-lg);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { border-color: var(--green); }
+
+    /* ===== 弹窗 ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 100; display: flex; align-items: flex-end;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-sheet {
+      background: var(--card); border-radius: 20px 20px 0 0;
+      width: 100%; max-width: 430px; margin: 0 auto;
+      padding: 8px 0 var(--safe-bottom);
+      max-height: 80vh; overflow-y: auto;
+      animation: slideUp 0.3s var(--ease-out);
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .modal-handle {
+      width: 36px; height: 4px; background: var(--border);
+      border-radius: 2px; margin: 8px auto 16px;
+    }
+    .modal-sheet .detail-row {
+      display: flex; justify-content: space-between;
+      padding: 10px 20px; font-size: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .modal-sheet .detail-row:last-child { border-bottom: none; }
+    .modal-sheet .detail-row .key { color: var(--text-secondary); }
+    .modal-sheet .detail-row .val { color: var(--text); font-weight: 500; text-align: right; }
+
+    /* ===== 客服聊天 ===== */
+    .chat-wrap {
+      display: flex; flex-direction: column;
+      height: calc(100vh - 130px);
+      height: calc(100dvh - 130px);
+      max-height: 600px;
+    }
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 4px 0 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chat-bubble {
+      max-width: 80%; padding: 10px 14px; border-radius: 16px;
+      font-size: 14px; line-height: 1.5; margin-bottom: 10px;
+      word-break: break-word; animation: fadeIn 0.2s ease;
+    }
+    .chat-bubble.user {
+      margin-left: auto; background: var(--accent);
+      color: #fff; border-bottom-right-radius: 4px;
+    }
+    .chat-bubble.cs {
+      margin-right: auto; background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text); border-bottom-left-radius: 4px;
+    }
+    .chat-input-wrap {
+      display: flex; gap: 8px; padding: 10px 0 0;
+      border-top: 1px solid var(--border); margin-top: 4px;
+    }
+    .chat-input-wrap input {
+      flex: 1; height: 42px; padding: 0 14px;
+      background: var(--input-bg); border: 1px solid var(--border);
+      border-radius: 21px; color: var(--text); font-size: 14px;
+      font-family: inherit; outline: none; -webkit-appearance: none;
+    }
+    .chat-input-wrap input:focus { border-color: var(--accent); }
+    .chat-input-wrap .btn-send {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--accent); border: none; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; -webkit-appearance: none;
+    }
+    .chat-input-wrap .btn-send:active { opacity: 0.8; }
+
+    /* ===== 用户卡片 ===== */
+    .user-card {
+      text-align: center; padding: 28px 20px;
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); margin-bottom: 14px;
+    }
+    .user-avatar {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: var(--accent-glow); margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--accent);
+    }
+    .user-avatar svg { width: 32px; height: 32px; color: var(--accent); }
+    .user-id { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: 1px; margin-bottom: 4px; }
+    .user-label { font-size: 12px; color: var(--text-secondary); }
+    .user-stats {
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); padding: 16px; margin-bottom: 14px;
+    }
+    .user-stats .stat-row {
+      display: flex; justify-content: space-between;
+      padding: 8px 0; font-size: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .user-stats .stat-row:last-child { border-bottom: none; }
+    .user-stats .stat-row .skey { color: var(--text-secondary); }
+    .user-stats .stat-row .sval { color: var(--text); font-weight: 500; }
+
+    /* ===== 表单网格布局 ===== */
+    .field-grid { display: grid; gap: 10px; }
+    .field-grid.grid-2 { grid-template-columns: 1fr 1fr; }
+    .field-grid.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .field-grid .field { margin-bottom: 0; }
+    .field-grid .field label { font-size: 13px; }
+
+    /* 保险小选项 */
+    .radio-group.insurance-pills { gap: 8px; }
+    .radio-group.insurance-pills .radio-btn {
+      flex: 1; height: 38px; font-size: 13px; border-radius: var(--radius-sm);
+    }
+
+    /* ===== 打款进度 ===== */
+    .progress-section {
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      border-radius: var(--radius); padding: 20px 18px; margin-bottom: 14px;
+    }
+    .progress-section .ps-title {
+      font-size: 15px; font-weight: 700; color: var(--text);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+      letter-spacing: 0.5px;
+    }
+    .progress-section .ps-title svg { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
+    .progress-bar-wrap {
+      background: var(--input-bg); border-radius: 10px;
+      height: 10px; overflow: hidden; margin-bottom: 12px;
+    }
+    .progress-bar-fill {
+      height: 100%; border-radius: 10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+      transform-origin: left;
+      transition: transform 1s linear;
+    }
+    .countdown-text {
+      font-size: 28px; font-weight: 800; text-align: center;
+      color: var(--text); letter-spacing: 3px; margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-sub {
+      font-size: 13px; color: var(--text-secondary); text-align: center;
+      letter-spacing: 0.3px;
+    }
+    .countdown-done {
+      font-size: 16px; font-weight: 700; color: var(--green);
+      text-align: center; padding: 12px 0; letter-spacing: 0.5px;
+    }
+
+    /* ===== 出租进度 ===== */
+    .rental-item {
+      padding: 14px 0; border-bottom: 1px solid var(--border-light);
+    }
+    .rental-item:last-child { border-bottom: none; }
+    .rental-item .ri-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .rental-item .ri-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .rental-item .ri-status-tag {
+      font-size: 11px; font-weight: 600; padding: 2px 8px;
+      border-radius: 10px; background: var(--accent-muted); color: var(--accent);
+    }
+    .rental-item .ri-days-label {
+      font-size: 12px; color: var(--text-secondary); margin-top: 8px;
+      text-align: right; letter-spacing: 0.3px;
+    }
+    .day-nodes {
+      display: flex; gap: 8px; justify-content: center; padding: 4px 0;
+    }
+    .day-node {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid var(--border); background: transparent;
+      transition: all 0.3s var(--ease-out);
+    }
+    .day-node.filled {
+      border-color: var(--accent); background: var(--accent);
+    }
+    .day-node.today {
+      border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 3px var(--accent-muted);
+      animation: pulse-node 2s ease-in-out infinite;
+    }
+    @keyframes pulse-node {
+      0%, 100% { box-shadow: 0 0 0 0 var(--orange-muted); }
+      50% { box-shadow: 0 0 0 8px transparent; }
+    }
+    .rental-empty {
+      text-align: center; padding: 16px; color: var(--text-secondary); font-size: 13px;
+    }
+
+    /* ===== 市场卡片 ===== */
+    .market-list { display: flex; flex-direction: column; gap: 12px; }
+    .market-card {
+      display: flex; gap: 12px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow-sm);
+      padding: 10px; overflow: hidden;
+      transition: box-shadow 0.2s var(--ease-out);
+    }
+    .market-card:active { box-shadow: var(--shadow-md); }
+    .market-card .mc-img {
+      width: 120px; height: 100px; flex-shrink: 0;
+      border-radius: var(--radius-sm); overflow: hidden;
+      background: var(--input-bg);
+    }
+    .market-card .mc-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .market-card .mc-right {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: space-between; min-width: 0;
+    }
+    .market-card .mc-right .mc-name {
+      font-size: 14px; font-weight: 600; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .market-card .mc-right .mc-info {
+      font-size: 12px; color: var(--text-secondary);
+      display: flex; gap: 8px;
+    }
+    .market-card .mc-right .mc-price {
+      font-size: 14px; font-weight: 700; color: var(--accent);
+    }
+    .market-card .mc-right .btn-contact {
+      width: 100%; height: 34px; border-radius: var(--radius-sm);
+      background: var(--accent); border: none; color: #fff;
+      font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: 0.5px;
+      transition: opacity 0.15s; -webkit-appearance: none;
+    }
+    .market-card .mc-right .btn-contact:active { opacity: 0.85; }
+    .market-empty {
+      text-align: center; padding: 60px 20px; color: var(--text-secondary);
+    }
+    .market-empty svg { width: 56px; height: 56px; margin-bottom: 12px; opacity: 0.25; }
+    .market-empty p { font-size: 14px; }
+
+    /* ===== Focus visible ===== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* ===== Reduced motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- 顶部 -->
+  <header class="header">
+    <img src="logo.png" alt="刀锋商行" class="header-logo">
+    <div class="subtitle">游戏账号 · 挂单</div>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="main" id="main">
+
+    <!-- ===== 挂单表单视图 ===== -->
+    <div class="view active" id="view-form">
+
+      <!-- 步骤指示器 -->
+      <div class="steps">
+        <div class="step active" id="step-ind-1"><span class="num">1</span>账号信息</div>
+        <div class="line" id="step-line"></div>
+        <div class="step" id="step-ind-2"><span class="num">2</span>支付信息</div>
+      </div>
+
+      <!-- 步骤一：账号信息 -->
+      <div id="step1">
+        <div class="section">
+          <div class="section-title">基本信息</div>
+          <div class="field">
+            <label>区服</label>
+            <select id="server">
+              <option value="">请选择区服</option>
+              <option value="微信区">微信区</option>
+              <option value="QQ区">QQ区</option>
+              <option value="国际服">国际服</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+          <div class="field" id="server-custom-wrap" style="display:none;">
+            <label>请输入区服名称</label>
+            <input type="text" id="server-custom" placeholder="输入区服名称">
+          </div>
+          <div class="field">
+            <label>登录方式</label>
+            <div class="radio-group" id="login-method">
+              <label class="radio-btn selected"><input type="radio" name="loginMethod" value="扫码" checked><span class="dot"></span>扫码</label>
+              <label class="radio-btn"><input type="radio" name="loginMethod" value="账密"><span class="dot"></span>账密</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">账号属性</div>
+          <div class="field-grid grid-2">
+            <div class="field"><label>等级</label><input type="number" id="level" placeholder="输入等级" inputmode="numeric"></div>
+            <div class="field"><label>段位</label><input type="text" id="rank" placeholder="输入段位"></div>
+            <div class="field"><label>体力</label><input type="number" id="stamina" placeholder="输入体力值" inputmode="numeric"></div>
+            <div class="field"><label>负重</label><input type="number" id="weight" placeholder="输入负重值" inputmode="numeric"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">资产信息</div>
+          <div class="field-grid grid-3">
+            <div class="field"><label>总资产</label><input type="text" id="totalAssets" placeholder="总资产"></div>
+            <div class="field"><label>流动资产</label><input type="text" id="liquidAssets" placeholder="流动资产"></div>
+            <div class="field"><label>纯币</label><input type="text" id="pureCoin" placeholder="纯币"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">装备 · 物品</div>
+          <div class="field-grid grid-2">
+            <div class="field"><label>账号刀皮红皮</label><input type="text" id="knifeRedSkin" placeholder="刀皮/红皮"></div>
+            <div class="field"><label>仓库六头 <span class="hint">(满耐)</span></label><input type="number" id="sixHeadCount" placeholder="数量" inputmode="numeric" min="0"></div>
+            <div class="field"><label>仓库六甲 <span class="hint">(满耐)</span></label><input type="number" id="sixArmorCount" placeholder="数量" inputmode="numeric" min="0"></div>
+            <div class="field"><label>AWM 子弹</label><input type="number" id="awmBullets" placeholder="数量" inputmode="numeric" min="0"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">安全信息</div>
+          <div class="field">
+            <label>保险</label>
+            <div class="radio-group insurance-pills" id="insurance">
+              <label class="radio-btn"><input type="radio" name="insurance" value="两格"><span class="dot"></span>两格</label>
+              <label class="radio-btn"><input type="radio" name="insurance" value="四格"><span class="dot"></span>四格</label>
+              <label class="radio-btn selected"><input type="radio" name="insurance" value="六格" checked><span class="dot"></span>六格</label>
+              <label class="radio-btn"><input type="radio" name="insurance" value="九格"><span class="dot"></span>九格</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>是否成年</label>
+            <div class="radio-group" id="is-adult">
+              <label class="radio-btn selected"><input type="radio" name="isAdult" value="是" checked><span class="dot"></span>是</label>
+              <label class="radio-btn"><input type="radio" name="isAdult" value="否"><span class="dot"></span>否</label>
+            </div>
+          </div>
+          <div class="field">
+            <label>实名是否本人</label>
+            <div class="radio-group" id="real-name">
+              <label class="radio-btn selected"><input type="radio" name="realNameOwner" value="是" checked><span class="dot"></span>是</label>
+              <label class="radio-btn"><input type="radio" name="realNameOwner" value="否"><span class="dot"></span>否</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-wrap">
+          <button class="btn-submit" id="btn-step1-next">下一步 →</button>
+        </div>
+        <div style="height:8px;"></div>
+      </div>
+
+      <!-- 步骤二：支付信息 -->
+      <div id="step2" style="display:none;">
+        <div class="section">
+          <div class="section-title">支付信息</div>
+          <div class="field">
+            <label>挂单金额 <span class="hint">(元)</span></label>
+            <input type="text" id="price" placeholder="输入挂单金额" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label>出租时间 <span class="hint">(天)</span></label>
+            <input type="number" id="rentalDays" placeholder="输入出租天数" inputmode="numeric" min="1">
+          </div>
+          <div class="field">
+            <label>支付宝账号</label>
+            <input type="text" id="alipay" placeholder="输入支付宝账号">
+          </div>
+          <div class="field">
+            <label>银行卡账号</label>
+            <input type="text" id="bankCard" placeholder="输入银行卡账号" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="btn-back" id="btn-back-step1">← 返回修改账号信息</div>
+        <div class="submit-wrap">
+          <button class="btn-submit" id="btn-final-submit">确认挂单</button>
+        </div>
+        <div style="height:8px;"></div>
+      </div>
+    </div>
+
+    <!-- ===== 提交成功状态 ===== -->
+    <div class="view" id="view-status">
+      <div class="status-card">
+        <div class="status-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="status-label">账号正在挂单中</div>
+        <div class="status-time" id="status-time"></div>
+      </div>
+      <div class="status-detail" id="status-detail"></div>
+      <div class="submit-wrap">
+        <button class="btn-new-listing" id="btn-new-listing">再挂一单</button>
+      </div>
+    </div>
+
+    <!-- ===== 历史记录 ===== -->
+    <div class="view" id="view-history">
+      <div id="history-list"></div>
+    </div>
+
+    <!-- ===== 市场 ===== -->
+    <div class="view" id="view-market">
+      <div class="market-list" id="market-list"></div>
     </div>
 
     <!-- ===== 用户 ===== -->
@@ -959,7 +1608,6 @@
   </div>
 </div>
 
-<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
 <script>
 // ==================== IndexedDB ====================
 const DB_NAME = 'changshangxing';
@@ -979,11 +1627,6 @@ function openDB() {
       }
       if (!db.objectStoreNames.contains(STORE_MSGS)) {
         const s = db.createObjectStore(STORE_MSGS, { keyPath: 'id', autoIncrement: true });
-        s.createIndex('createdAt', 'createdAt', { unique: false });
-      }
-      if (!db.objectStoreNames.contains('p2p_messages')) {
-        const s = db.createObjectStore('p2p_messages', { keyPath: 'id', autoIncrement: true });
-        s.createIndex('peerId', 'peerId', { unique: false });
         s.createIndex('createdAt', 'createdAt', { unique: false });
       }
     };
@@ -1273,18 +1916,7 @@ function switchTab(tab) {
 
   if (tab === 'history') renderHistory();
   if (tab === 'market') renderMarket();
-  if (tab === 'chat') {
-    if (chatMode === 'p2p') {
-      document.getElementById('p2p-panel').classList.add('active');
-      document.getElementById('chat-attach-row').style.display = 'flex';
-      initP2P();
-      renderP2PChat();
-    } else {
-      document.getElementById('p2p-panel').classList.remove('active');
-      document.getElementById('chat-attach-row').style.display = 'none';
-      renderChat();
-    }
-  }
+  if (tab === 'chat') renderChat();
   if (tab === 'user') initUser();
   if (tab === 'form') { resetSteps(); resetStep2Form(); step1Data = null; }
   $('main').scrollTop = 0;
@@ -1411,369 +2043,48 @@ async function renderMarket() {
   }
 }
 
-// ==================== 聊天系统（P2P + 本地客服） ====================
-let chatMode = 'cs'; // 'cs' | 'p2p'
-let peer = null;
-let peerConn = null;
-let p2pConnected = false;
-let p2pPeerId = null;
-const P2P_MSG_STORE = 'p2p_messages';
-const CHUNK_SIZE = 16 * 1024;
-let incomingChunks = {};
-const P2P_ID_KEY = 'changshangxing_p2p_id';
-const P2P_REMOTE_KEY = 'changshangxing_p2p_remote';
-let reconnectTimer = null;
-let heartbeatTimer = null;
-let heartbeatMissed = 0;
-const HEARTBEAT_INTERVAL = 5000;
-const HEARTBEAT_TIMEOUT = 3;
-const RECONNECT_DELAYS = [1000, 2000, 4000, 8000, 16000];
-let reconnectAttempt = 0;
+// ==================== 客服聊天 ====================
+async function renderChat() {
+  const container = $('chat-messages');
+  const msgs = await getMsgs();
 
-// --- localStorage 持久化 ---
-function getSavedPeerId() { try { return localStorage.getItem(P2P_ID_KEY); } catch { return null; } }
-function savePeerId(id) { try { localStorage.setItem(P2P_ID_KEY, id); } catch {} }
-function getSavedRemoteId() { try { return localStorage.getItem(P2P_REMOTE_KEY); } catch { return null; } }
-function saveRemoteId(id) { try { localStorage.setItem(P2P_REMOTE_KEY, id); } catch {} }
-function clearRemoteId() { try { localStorage.removeItem(P2P_REMOTE_KEY); } catch {} }
-
-// --- IndexedDB: P2P 消息持久化 ---
-async function saveP2PMsg(data) {
-  const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(P2P_MSG_STORE, 'readwrite');
-    const store = tx.objectStore(P2P_MSG_STORE);
-    const record = { ...data, createdAt: new Date().toISOString() };
-    const req = store.add(record);
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = (e) => { db.close(); reject(e.target.error); };
-    tx.oncomplete = () => db.close();
-  });
-}
-async function getP2PMsgs(peerId) {
-  const db = await openDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(P2P_MSG_STORE, 'readonly');
-    const store = tx.objectStore(P2P_MSG_STORE);
-    const req = store.index('peerId').getAll(peerId);
-    req.onsuccess = () => resolve(req.result.sort((a,b) => a.id - b.id));
-    req.onerror = (e) => { db.close(); reject(e.target.error); };
-    tx.oncomplete = () => db.close();
-  });
+  if (msgs.length === 0) {
+    container.innerHTML = `<div class="chat-bubble cs">您好，欢迎联系刀锋商行客服。有什么可以帮您的？</div>`;
+  } else {
+    container.innerHTML = msgs.map(m => {
+      const cls = m.sender === 'user' ? 'user' : 'cs';
+      return `<div class="chat-bubble ${cls}">${escHtml(m.content)}</div>`;
+    }).join('');
+  }
+  container.scrollTop = container.scrollHeight;
 }
 
-// --- 聊天模式切换 ---
-document.querySelectorAll('.chat-mode-bar .mode-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    chatMode = btn.dataset.chatMode;
-    document.querySelectorAll('.chat-mode-bar .mode-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const p2pPanel = document.getElementById('p2p-panel');
-    const attachRow = document.getElementById('chat-attach-row');
-    if (chatMode === 'p2p') {
-      p2pPanel.classList.add('active');
-      attachRow.style.display = 'flex';
-      initP2P();
-      renderP2PChat();
-    } else {
-      p2pPanel.classList.remove('active');
-      attachRow.style.display = 'none';
-      renderChat();
-    }
-  });
-});
+async function sendMessage() {
+  const input = $('chat-input');
+  const content = input.value.trim();
+  if (!content) return;
 
-// --- P2P 初始化（固定ID + 免费TURN） ---
-function initP2P() {
-  if (peer) return;
-  if (typeof Peer === 'undefined') {
-    document.getElementById('my-peer-id').textContent = 'PeerJS 加载中...';
-    setTimeout(() => { if (typeof Peer !== 'undefined') initP2P(); }, 500);
+  try {
+    await saveMsg({ content, sender: 'user' });
+    input.value = '';
+    await renderChat();
+  } catch (err) {
+    console.error('发送消息失败', err);
     return;
   }
 
-  const savedId = getSavedPeerId();
-
-  peer = new Peer(savedId, {
-    debug: 2,
-    config: {
-      iceServers: [
-        { urls: ['stun:stun.l.google.com:19302','stun:stun1.l.google.com:19302'] },
-        {
-          urls: ['turn:openrelay.metered.ca:80?transport=tcp','turn:openrelay.metered.ca:443?transport=tcp'],
-          username: 'openrelayproject', credential: 'openrelayproject',
-        },
-        { urls: 'turn:freeturn.net:3478?transport=udp', username: 'free', credential: 'free' },
-      ],
-      iceCandidatePoolSize: 2,
-    },
-  });
-
-  peer.on('open', (id) => {
-    p2pPeerId = id;
-    savePeerId(id);
-    document.getElementById('my-peer-id').textContent = id;
-    console.log('P2P: My ID:', id);
-    // 自动重连上次的对象
-    const savedRemote = getSavedRemoteId();
-    if (savedRemote && !peerConn) {
-      document.getElementById('remote-peer-id').value = savedRemote;
-      setTimeout(() => connectToPeer(savedRemote), 500 + Math.floor(Math.random() * 1500));
-    }
-  });
-
-  peer.on('connection', (conn) => {
-    if (peerConn) { conn.close(); return; }
-    setupConnection(conn);
-    saveRemoteId(conn.peer);
-    updateP2PStatus('connected', '已连接 · ' + conn.peer);
-    document.getElementById('remote-peer-id').value = conn.peer;
-  });
-
-  peer.on('error', (err) => {
-    console.error('P2P error:', err);
-    if (err.type === 'unavailable-id') {
-      localStorage.removeItem(P2P_ID_KEY);
-      peer.destroy(); peer = null;
-      initP2P();
-    }
-  });
-
-  peer.on('disconnected', () => { peer.reconnect(); });
+  // 模拟客服回复
+  setTimeout(() => {
+    saveMsg({ content: '客服正在接线中，请稍候...', sender: 'cs' })
+      .then(() => renderChat())
+      .catch(err => console.error('客服回复失败', err));
+  }, 1000);
 }
 
-// --- 连接到远程 Peer ---
-function connectToPeer(remoteId) {
-  if (!remoteId || !peer) return;
-  if (peerConn && peerConn.peer === remoteId && p2pConnected) return;
-  if (peerConn) { peerConn.close(); peerConn = null; clearHeartbeat(); }
-  updateP2PStatus('connecting', '正在连接...');
-  setupConnection(peer.connect(remoteId, { reliable: true }));
-}
-
-document.getElementById('btn-p2p-connect').addEventListener('click', () => {
-  const id = document.getElementById('remote-peer-id').value.trim();
-  if (!id) { showToast('请输入对方连接 ID'); return; }
-  saveRemoteId(id); reconnectAttempt = 0;
-  connectToPeer(id);
+$('btn-send').addEventListener('click', sendMessage);
+$('chat-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') sendMessage();
 });
-
-// --- 复制 ID ---
-document.getElementById('btn-copy-id').addEventListener('click', async () => {
-  if (!p2pPeerId) { showToast('ID 尚未生成'); return; }
-  try { await navigator.clipboard.writeText(p2pPeerId); showToast('已复制，发给对方即可', 'success'); } catch { showToast('复制失败'); }
-});
-
-// --- 断开 ---
-document.getElementById('btn-p2p-disconnect').addEventListener('click', () => {
-  clearReconnect(); clearHeartbeat(); clearRemoteId();
-  if (peerConn) { peerConn.close(); peerConn = null; }
-  p2pConnected = false;
-  document.getElementById('remote-peer-id').value = '';
-  updateP2PStatus('disconnected', '已断开');
-  renderP2PChat();
-});
-
-// --- 心跳保活 ---
-function startHeartbeat() {
-  clearHeartbeat(); heartbeatMissed = 0;
-  heartbeatTimer = setInterval(() => {
-    if (!peerConn || !p2pConnected) { clearHeartbeat(); return; }
-    try {
-      peerConn.send({ type: 'ping', ts: Date.now() });
-      heartbeatMissed++;
-      if (heartbeatMissed >= HEARTBEAT_TIMEOUT) { clearHeartbeat(); handleConnectionLost(); }
-    } catch { heartbeatMissed = HEARTBEAT_TIMEOUT; clearHeartbeat(); handleConnectionLost(); }
-  }, HEARTBEAT_INTERVAL);
-}
-function clearHeartbeat() { heartbeatMissed = 0; if (heartbeatTimer) { clearInterval(heartbeatTimer); heartbeatTimer = null; } }
-
-// --- 自动重连 ---
-function handleConnectionLost() {
-  if (!peerConn || p2pConnected) return;
-  const remoteId = peerConn.peer || getSavedRemoteId();
-  if (!remoteId) return;
-  p2pConnected = false; peerConn = null;
-  const delay = RECONNECT_DELAYS[Math.min(reconnectAttempt, RECONNECT_DELAYS.length - 1)];
-  reconnectAttempt++;
-  updateP2PStatus('connecting', '断线，' + Math.round(delay/1000) + 's 后重连...');
-  reconnectTimer = setTimeout(() => { if (!p2pConnected && peer) connectToPeer(remoteId); }, delay);
-}
-function clearReconnect() { reconnectAttempt = 0; if (reconnectTimer) { clearTimeout(reconnectTimer); reconnectTimer = null; } }
-
-// --- 连接处理 ---
-function setupConnection(conn) {
-  peerConn = conn; p2pConnected = false;
-  clearReconnect(); clearHeartbeat();
-
-  conn.on('open', () => {
-    p2pConnected = true; reconnectAttempt = 0;
-    saveRemoteId(conn.peer);
-    document.getElementById('remote-peer-id').value = conn.peer;
-    updateP2PStatus('connected', '已连接 · ' + conn.peer);
-    console.log('P2P: connected to', conn.peer);
-    renderP2PChat(); startHeartbeat();
-    showToast('连接成功！', 'success');
-  });
-
-  conn.on('data', (data) => {
-    if (data.type === 'ping') { heartbeatMissed = 0; try { conn.send({ type: 'pong', ts: data.ts }); } catch {} return; }
-    if (data.type === 'pong') { heartbeatMissed = 0; return; }
-    handleP2PData(data, conn.peer);
-  });
-
-  conn.on('close', () => {
-    p2pConnected = false; clearHeartbeat();
-    updateP2PStatus('disconnected', '连接断开');
-    renderP2PChat(); handleConnectionLost();
-  });
-
-  conn.on('error', (err) => {
-    console.error('P2P conn error:', err.message);
-    p2pConnected = false; clearHeartbeat();
-    updateP2PStatus('disconnected', '连接异常');
-    renderP2PChat(); handleConnectionLost();
-  });
-}
-
-// --- 状态更新 ---
-function updateP2PStatus(status, text) {
-  const el = document.getElementById('p2p-status');
-  const txt = document.getElementById('p2p-status-text');
-  const btn = document.getElementById('btn-p2p-disconnect');
-  el.className = 'p2p-status ' + status;
-  txt.textContent = text;
-  btn.style.display = status === 'connected' ? 'inline-block' : 'none';
-}
-
-// --- 数据处理 ---
-function handleP2PData(data, senderId) {
-  if (data.type === 'text') {
-    saveP2PMsg({ peerId: senderId, sender: 'peer', content: data.content, msgType: 'text' }).then(() => renderP2PChat());
-  } else if (data.type === 'chunk') {
-    handleChunk(data, senderId);
-  } else if (data.type === 'file-meta') {
-    incomingChunks[data.transferId] = { total: data.total, chunks: [], senderId, mimeType: data.mimeType, fileName: data.fileName, fileSize: data.fileSize };
-  }
-}
-function handleChunk(data, senderId) {
-  const entry = incomingChunks[data.transferId]; if (!entry) return;
-  entry.chunks[data.index] = new Uint8Array(data.chunk);
-  if (entry.chunks.filter(Boolean).length === entry.total) {
-    const len = entry.chunks.reduce((s,c) => s + c.length, 0);
-    const bytes = new Uint8Array(len); let off = 0;
-    for (const c of entry.chunks) { bytes.set(c, off); off += c.length; }
-    delete incomingChunks[data.transferId];
-    const blob = new Blob([bytes], { type: entry.mimeType });
-    const reader = new FileReader();
-    reader.onload = () => saveP2PMsg({ peerId: senderId, sender: 'peer', content: reader.result, msgType: 'image', fileName: entry.fileName, fileSize: entry.fileSize }).then(() => renderP2PChat());
-    reader.readAsDataURL(blob);
-  }
-}
-
-// --- 渲染 P2P 聊天 ---
-async function renderP2PChat() {
-  const c = document.getElementById('chat-messages');
-  const tip = document.getElementById('p2p-tip');
-  if (!p2pConnected && !peerConn) { tip.style.display = 'block'; c.querySelectorAll('.chat-bubble').forEach(b => b.remove()); return; }
-  tip.style.display = 'none';
-  const rid = peerConn ? peerConn.peer : (p2pPeerId || 'unknown');
-  const msgs = await getP2PMsgs(rid);
-  if (!msgs.length) {
-    c.innerHTML = '<div class="p2p-tip"><p>连接成功！发送消息开始聊天</p><p style="font-size:11px;opacity:0.6;">端到端加密 · P2P 直连</p></div>';
-  } else {
-    c.innerHTML = msgs.map(m => {
-      if (m.sender === 'user') {
-        if (m.msgType === 'image') return '<div class="chat-bubble user"><img src="'+escHtml(m.content)+'" alt="图" loading="lazy" onclick="openImage(\''+escHtml(m.content)+'\')"></div>';
-        return '<div class="chat-bubble user">'+escHtml(m.content)+'</div>';
-      } else {
-        if (m.msgType === 'image') return '<div class="chat-bubble peer"><div class="bubble-sender">'+(m.peerId||'').slice(0,8)+'</div><img src="'+escHtml(m.content)+'" alt="图" loading="lazy" onclick="openImage(\''+escHtml(m.content)+'\')"></div>';
-        return '<div class="chat-bubble peer"><div class="bubble-sender">'+(m.peerId||'').slice(0,8)+'</div>'+escHtml(m.content)+'</div>';
-      }
-    }).join('');
-  }
-  c.scrollTop = c.scrollHeight;
-}
-function openImage(src) { const w = window.open('','_blank'); w.document.write('<img src="'+src+'" style="max-width:100%">'); }
-
-// --- 发送 P2P 消息 ---
-async function sendP2PMessage() {
-  const input = document.getElementById('chat-input');
-  const content = input.value.trim();
-  if (!content) return;
-  if (!peerConn || !p2pConnected) { showToast('未连接'); return; }
-  const rid = peerConn.peer;
-  try {
-    await saveP2PMsg({ peerId: rid, sender: 'user', content, msgType: 'text' });
-    peerConn.send({ type: 'text', content });
-    input.value = '';
-    await renderP2PChat();
-  } catch (err) { console.error(err); showToast('发送失败'); }
-}
-
-// --- 发送 P2P 图片 ---
-async function sendP2PImage(file) {
-  if (!peerConn || !p2pConnected) { showToast('未连接'); return; }
-  const rid = peerConn.peer;
-  const reader = new FileReader();
-  reader.onload = async () => {
-    const dataUrl = reader.result;
-    await saveP2PMsg({ peerId: rid, sender: 'user', content: dataUrl, msgType: 'image', fileName: file.name, fileSize: file.size });
-    await renderP2PChat();
-    const buf = await file.arrayBuffer(); const bytes = new Uint8Array(buf);
-    const total = Math.ceil(bytes.length / CHUNK_SIZE);
-    const tid = 'img_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
-    peerConn.send({ type: 'file-meta', transferId: tid, total, mimeType: file.type, fileName: file.name, fileSize: file.size });
-    for (let i = 0; i < total; i++) {
-      const s = i * CHUNK_SIZE, e = Math.min(s + CHUNK_SIZE, bytes.length);
-      peerConn.send({ type: 'chunk', transferId: tid, index: i, total, chunk: Array.from(bytes.slice(s, e)) });
-    }
-  };
-  reader.readAsDataURL(file);
-}
-
-// --- 客服聊天 ---
-async function renderChat() {
-  const c = document.getElementById('chat-messages');
-  document.getElementById('p2p-tip').style.display = 'none';
-  const msgs = await getMsgs();
-  if (msgs.length === 0) {
-    c.innerHTML = '<div class="chat-bubble cs">您好，欢迎联系刀锋商行客服。有什么可以帮您的？</div>';
-  } else {
-    c.innerHTML = msgs.map(m => '<div class="chat-bubble '+(m.sender==='user'?'user':'cs')+'">'+escHtml(m.content)+'</div>').join('');
-  }
-  c.scrollTop = c.scrollHeight;
-}
-
-// --- 统一发送入口 ---
-async function sendMessage() {
-  if (chatMode === 'p2p') return sendP2PMessage();
-  const input = document.getElementById('chat-input');
-  const content = input.value.trim();
-  if (!content) return;
-  try { await saveMsg({ content, sender: 'user' }); input.value = ''; await renderChat(); } catch (err) { console.error(err); return; }
-  setTimeout(() => { saveMsg({ content: '客服正在接线中，请稍候...', sender: 'cs' }).then(() => renderChat()).catch(() => {}); }, 1000);
-}
-
-document.getElementById('btn-send').addEventListener('click', sendMessage);
-document.getElementById('chat-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(); });
-
-// --- 图片上传 ---
-document.getElementById('btn-attach-img').addEventListener('click', () => document.getElementById('p2p-file-input').click());
-document.getElementById('p2p-file-input').addEventListener('change', (e) => {
-  const file = e.target.files[0]; if (!file) return;
-  if (!file.type.startsWith('image/')) { showToast('仅支持图片文件'); return; }
-  if (file.size > 50 * 1024 * 1024) { showToast('图片不能超过 50MB'); return; }
-  sendP2PImage(file); e.target.value = '';
-});
-
-// 粘贴图片支持
-document.addEventListener('paste', (e) => {
-  if (chatMode !== 'p2p') return;
-  const items = e.clipboardData?.items; if (!items) return;
-  for (const item of items) { if (item.type.startsWith('image/')) { const f = item.getAsFile(); if (f) sendP2PImage(f); break; } }
-});
-
 // ==================== 用户系统 ====================
 function initUser() {
   let user = localStorage.getItem('changshangxing_user');
